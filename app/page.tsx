@@ -45,7 +45,7 @@ export default function Home() {
         >
           <span className="z-100">
             <h1 className={cn("mb-1.25 text-5xl", "max-laptop:text-4xl")}>
-              Adrian Tobi王拓
+              Adrian Tobi 王拓
             </h1>
           </span>
 
