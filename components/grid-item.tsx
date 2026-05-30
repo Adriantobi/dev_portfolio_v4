@@ -3,9 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ReactNode, useEffect, useEffectEvent, useState } from "react";
-import { useWindowSize } from "@/hooks/use-window-size";
-import { useHover } from "@/hooks/use-hover";
+import { ReactNode, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
 import { usePalette } from "color-thief-react";
 
@@ -39,6 +37,11 @@ type GridItemProps =
       width: number;
     } & SharedGridItemProps);
 
+function subscribe(callback: () => void) {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+}
+
 export default function GridItem({
   size,
   height,
@@ -54,23 +57,12 @@ export default function GridItem({
   link,
   children,
 }: GridItemProps) {
-  const { width: windowWidth } = useWindowSize();
-  const [mobile, setMobile] = useState(false);
-  const [ref, hovering] = useHover<HTMLDivElement>();
-  const { data, loading, error } = usePalette(icon, 4, "hex");
-
-  const updateMobileState = useEffectEvent((state: boolean) =>
-    setMobile(state),
+  const isMobile = useSyncExternalStore(
+    subscribe,
+    () => window.innerWidth < 520,
+    () => false,
   );
-
-  useEffect(() => {
-    if (windowWidth > 0) updateMobileState(windowWidth < 520 ? true : false);
-  }, [windowWidth]);
-
-  useEffect(() => {
-    // if (btnContent)
-    // getDominantColor()
-  }, [btnContent]);
+  const { data } = usePalette(icon ?? "", 4, "hex");
 
   const getGridItemProperties = (param: GridSizeParam) => {
     const w = "size" in param ? param.size : param.width;
@@ -84,7 +76,7 @@ export default function GridItem({
       case "2x2":
         return "col-span-2 row-span-2 min-w-[315px] min-h-[150px]";
       case "2x1":
-        return mobile
+        return isMobile
           ? "col-span-1 row-span-1 min-w-[150px] min-h-[150px]"
           : "col-span-1 row-span-2 min-w-[150px] min-h-[150px]";
       case "1x2":
@@ -92,9 +84,9 @@ export default function GridItem({
       case "2x4":
         return "col-span-2 row-span-4 min-w-[315px] min-h-[315px]";
       case "3x4":
-        return mobile ? "col-span-2 row-span-4" : "col-span-3 row-span-4";
+        return isMobile ? "col-span-2 row-span-4" : "col-span-3 row-span-4";
       case "3x3":
-        return mobile ? "col-span-2 row-span-3" : "col-span-3 row-span-3";
+        return isMobile ? "col-span-2 row-span-3" : "col-span-3 row-span-3";
       default:
         // fallback for arbitrary sizes
         return `col-span-${w} row-span-${h} min-w-[${w * 75}px] min-h-[${h * 75}px]`;
@@ -192,7 +184,6 @@ export default function GridItem({
         damping: 35,
         duration: 0.15,
       }}
-      ref={ref}
       className={cn(
         gridClasses ?? "min-w-37.5 min-h-18.75",
         "group border relative rounded-[20px] p-3.75 flex flex-col overflow-hidden gap-2 h-full w-full",
