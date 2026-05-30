@@ -44,11 +44,13 @@ export default function Home() {
           )}
         >
           <span className="z-100">
-            <h1 className="mb-1.25 text-5xl">Adrian Tobi王拓</h1>
+            <h1 className={cn("mb-1.25 text-5xl", "max-laptop:text-4xl")}>
+              Adrian Tobi王拓
+            </h1>
           </span>
 
           <span className="opacity-95 flex z-100 gap-1.25 items-center">
-            Developer at{" "}
+            Former Developer at{" "}
             <TextLink href="https://www.jeffreyai.com/" target="_blank">
               JeffreyAI
             </TextLink>
