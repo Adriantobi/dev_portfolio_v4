@@ -1,65 +1,130 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Code } from "lucide-react";
+import TextLink from "@/components/text-link";
+import Footer from "@/components/footer";
+import BentoGrid from "@/components/bento-grid";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
+  const langs = ["TypeScript", "PHP", "Rust", "Java", "Python"];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="h-full w-full flex justify-center items-center">
+      <svg className="hidden overflow-hidden">
+        <filter id="displacementFilter">
+          <feTurbulence
+            type="turbulence"
+            baseFrequency="0.005"
+            numOctaves="2"
+            result="turbulence"
+          />
+
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="turbulence"
+            scale="25"
+            xChannelSelector="B"
+            yChannelSelector="G"
+          />
+        </filter>
+      </svg>
+
+      <div
+        className={cn(
+          "px-24 mx-auto flex justify-center gap-7.5 h-full w-full items-start overflow-y-auto overflow-x-hidden",
+          "max-laptop:flex-col max-laptop:justify-start",
+          "max-tablet:px-2.5",
+        )}
+      >
+        <div
+          className={cn(
+            "max-w-115 min-w-90 flex flex-col sticky top-0 left-0 gap-3.5 py-24 h-full",
+            "max-laptop:relative max-laptop:min-w-full",
+            "max-tablet:px-3.75 max-tablet:pt-12 max-tablet:pb-0",
+          )}
+        >
+          <span className="z-100">
+            <h1 className="mb-1.25 text-5xl">Adrian Tobi王拓</h1>
+          </span>
+
+          <span className="opacity-95 flex z-100 gap-1.25 items-center">
+            Developer at{" "}
+            <TextLink href="https://www.jeffreyai.com/" target="_blank">
+              JeffreyAI
+            </TextLink>
+          </span>
+
+          <span className="z-100">
+            <p className="opacity-75 text-sm">
+              I’m a software engineer specializing in building and designing
+              astonishing digital experiences for users.
+            </p>
+          </span>
+
+          <span className="z-100 mt-1.25 flex gap-4 text-sm items-center">
+            <Link
+              className="flex items-center hover:opacity-75"
+              href={"https://www.linkedin.com/in/adriantd"}
+              target="_blank"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 448 512"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>
+              </svg>
+            </Link>
+            <Link
+              className="flex items-center hover:opacity-75"
+              href={"https://github.com/Adriantobi"}
+              target="_blank"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 16 16"
+                height="20"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+              </svg>
+            </Link>
+            <TextLink href="/pdf/Adrian_Tobi_FlowCV_Resume_2026-05-29.pdf">
+              Résumé
+            </TextLink>
+          </span>
+
+          <div className="flex flex-col text-sm z-100 gap-2">
+            <span className="flex gap-1.25 items-center">
+              <span className="flex justify-center items-center rounded-full p-1 bg-[rgb(var(--blur-color))]">
+                <Code size={12} />
+              </span>
+              <p className="opacity-95">Languages</p>
+            </span>
+            <span className="text-xs opacity-75">
+              {langs.map((lang) => (
+                <span
+                  key={lang}
+                  className="after:content-['_•_'] last:after:content-none"
+                >
+                  {lang}
+                </span>
+              ))}
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className={cn("flex flex-col gap-36 py-24", "max-tablet:gap-16")}>
+          <BentoGrid />
+          <Footer />
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

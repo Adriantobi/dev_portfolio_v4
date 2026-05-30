@@ -3,6 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --blur-rgb: 181, 183, 179;
+
+  --grid-item: 210, 210, 212;
+  --grid-item-hover: 203, 203, 203;
+
+  --tech-stack: 211, 211, 211;
 }
 
 @theme inline {
@@ -10,17 +16,97 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --accent-color: 0, 122, 255;
+  --blur-color: var(--blur-rgb);
+
+  --grid: var(--grid-item);
+  --grid-hover: var(--grid-item-hover);
+
+  --breakpoint-*: initial;
+  --breakpoint-phone: 32.5rem;
+  --breakpoint-tablet: 52.625rem;
+  --breakpoint-laptop: 66.56rem;
+  --breakpoint-desktop: 72.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --blur-rgb: 35, 35, 45;
+
+    --grid-item: 50, 48, 52;
+    --grid-item-hover: 45, 43, 47;
+
+    --tech-stack: 36, 36, 36;
   }
 }
 
+html,
 body {
-  background: var(--background);
+  max-width: 100vw;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    var(--background) 0%,
+    var(--background) 100%
+  );
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.background {
+  background:
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      rgba(var(--accent-color), 0.12),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 80% 20%,
+      rgba(var(--accent-color), 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse 70% 40% at 50% 45%,
+      rgba(243, 1, 62, 0.25),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse 60% 60% at 30% 45%,
+      rgba(67, 167, 67, 0.15) 0%,
+      rgba(67, 167, 67, 0.05) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 60% at 30% 35%,
+      rgba(35, 35, 45, 0.15) 0%,
+      rgba(35, 35, 45, 0.05) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 20% 80%,
+      rgba(60, 60, 90, 0.4),
+      transparent 50%
+    );
+  backdrop-filter: blur(100px);
+  filter: blur(100px);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  color: #323232;
+  background-color: #626262;
 }
