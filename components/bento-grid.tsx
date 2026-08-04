@@ -32,10 +32,10 @@ export default function BentoGrid() {
         link="https://www.jeffreyai.com/"
         start={new Date("2024-03-01")}
         end={new Date("2026-05-15")}
-        role="Angular Developer"
+        role="Software Engineer"
         type="Full Time"
         company="JeffreyAI"
-        description="As a front-end Angular developer, I craft a seamless user experience, from design to performance. I turn concepts into interactive interfaces, build reusable components, and ensure everything runs smoothly."
+        description="Architected the dearj open-source email editor package, engineered a client-facing LinkedIn Chrome extension for automated lead extraction, and optimized core enterprise Angular CRM features for daily active users."
         tech={[
           "Angular",
           "Typescript",
@@ -57,7 +57,7 @@ export default function BentoGrid() {
         role="X++ Developer"
         type="Full Time"
         company="Carbon & Finch"
-        description="Identified and resolved bugs or errors within Dynamics AX or Dynamics 365 business applications. Also implemented new features and tailored existing modules to align with specific business processes or workflows."
+        description="Debugged and optimized backend Dynamics 365/AX workflows while designing custom X++ business logic to tailor enterprise CRM and ERP modules to client requirements."
         tech={["X++", "Azure", "Microsoft Dynamics 365", "C#"]}
       />
 
@@ -93,7 +93,7 @@ export default function BentoGrid() {
         role="Front-end Developer"
         type="Internship"
         company="WeDance"
-        description="Used Vue.js to fix bugs given by various tickets on the github codebase. Helped in designing and building the new WeDance version."
+        description="Refactored legacy front-end code using Vue.js to resolve UI defects, improve app load performance, and deploy key feature updates for a major platform release."
         tech={["Vue.js", "CSS", "TypeScript"]}
       />
 
