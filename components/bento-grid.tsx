@@ -275,7 +275,7 @@ export default function BentoGrid() {
           size={2}
           header={"LinkedIn"}
           subheader={"@adriantd"}
-          content={"Student at Queen Mary University of London"}
+          content={"life is one bige conundrum."}
           btnContent={"Connect"}
         />
 
